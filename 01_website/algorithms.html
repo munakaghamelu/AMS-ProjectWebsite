@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Algorithms</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="styleSheet.css">
+</head>
+
+<body>
+    <div class="sidenav">
+        <a href="http://students.cs.ucl.ac.uk/2019/group1/index.html">Index</a>
+        <a href="http://students.cs.ucl.ac.uk/2019/group1/requirements.html">Requirements</a>
+        <a href="http://students.cs.ucl.ac.uk/2019/group1/research.html">Research</a>
+        <a href="http://students.cs.ucl.ac.uk/2019/group1/evaluation.html">Evaluation</a>
+        <a href="http://students.cs.ucl.ac.uk/2019/group1/design.html">Design</a>
+        <a href="http://students.cs.ucl.ac.uk/2019/group1/testing.html">Testing</a>
+        <a href="http://students.cs.ucl.ac.uk/2019/group1/appendices.html">Appendices</a>
+        <a href="http://students.cs.ucl.ac.uk/2019/group1/algorithms.html">Algorithms</a>
+    </div>
+
+    <div class="content">
+        <h1>Algorithms</h1>
+        <hr>
+
+        <h2> Models </h2>
+        <p>What is the key idea of your chosend algorithm?</p>
+
+        <h3>Transformation algorithm between camera coordinates</h3>
+        <p class="aligncenter"><iframe src="transformationAlgo.png" class="center" width="70%" height="1000px">
+        </iframe></p>
+        <br>
+        <p>The algorithm to transform the joint coordinates measured by each individual kinect is an important one when it comes to combining the results of each kinect. The joint coordinates from each kinect will be relative to the kinect that recorded
+            the data. This means in order to do any processing or combining of the data , a transformation must be applied to both the x and z coordinate readings of each client kinect. The transformation is detailed in the image above, note that x is
+            positive in the left direction of the server camera because that is the convention with the Kinect SDK. The transformation is dependant on where the client cameras are positioned relative to the server kinect, as well as the angle of rotation.
+            Currently we are hard coding those placements (angle, x_distance, y_distance).
+        </p>
+        <p>
+            Each kinect would start recoding simultaneously and start writing the skeletal data to their own csv text files. The recoding is then stopped at the same time and the files are stored in a folder locally. When the recording is played back,
+            the files are merged together using our code. First the appropriate transformations are performed on the files and then the data is combined and written to a new file based on their respective time stamps. If any of the data appears to be recorded at the 
+            same time, an average is taken instead. The distance is hard coded using the originial text files by seeing how far they were from the same joint. The merged csv is then be played back by the software and generated into a skeleton.
+            Interleaving the skeletal data this way helps increase the number of joints tracked per second and increase the accuracy.
+        </p>
+
+        <hr>
+
+        <h2> Experiment Setup </h2>
+        <p>Dataset, Training and testing scheme</p>
+        <hr>
+
+        <h2> Experiment Results </h2>
+        <p>Investigatation of optional hyperarameters, experiment results presented by quantified values, plots/tables to show performance of comparison results</p>
+        <hr>
+
+        <h2> Discussions </h2>
+        <p> Why algorithm fails for some test examples? Suggestions to improve the performance?</p>
+        <hr>
+
+        <h2> Conclusion </h2>
+        <hr>
+
+    </div>
+
+</body>
+
+</html>

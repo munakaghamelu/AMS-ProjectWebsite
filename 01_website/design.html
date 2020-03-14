@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Design</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="styleSheet.css">
+</head>
+
+<body>
+    <div class="sidenav">
+        <a href="http://students.cs.ucl.ac.uk/2019/group1/index.html">Index</a>
+        <a href="http://students.cs.ucl.ac.uk/2019/group1/requirements.html">Requirements</a>
+        <a href="http://students.cs.ucl.ac.uk/2019/group1/research.html">Research</a>
+        <a href="http://students.cs.ucl.ac.uk/2019/group1/evaluation.html">Evaluation</a>
+        <a href="http://students.cs.ucl.ac.uk/2019/group1/design.html">Design</a>
+        <a href="http://students.cs.ucl.ac.uk/2019/group1/testing.html">Testing</a>
+        <a href="http://students.cs.ucl.ac.uk/2019/group1/appendices.html">Appendices</a>
+        <a href="http://students.cs.ucl.ac.uk/2019/group1/algorithms.html">Algorithms</a>
+    </div>
+
+    <div class="content">
+        <h1>Design</h1>
+
+        <h2>System Architecture Diagram</h2>
+        <hr>
+
+        <h2>Class Diagram</h2>
+        <hr>
+
+        <h2>Data Storage</h2>
+        <hr>
+
+        <h2>Implementation of Key functionalities</h2>
+        <hr>
+
+        <h2>Potential Floor Plans for using the prototype</h2>
+        <img src="RealScale.jpeg" alt="Real World">
+        <img src="Feasible.jpeg" alt="Better Case">
+        <img src="Ideal.jpeg" alt="Best Case">
+        <hr>
+        <h2>System diagram for the project</h2>
+        <img src ="SystemDesign.png" alt="Systems Diagram">
+        <hr>
+        <h2>Implementation of finished functionalities</h2>
+        <ul>
+        <li>The video capture is done with the Unity asset along with 2 Kinects (all that we have access to so far).
+         The Unity asset runs on each individual computer that is connected to a Kinect, creating a text file representation
+          of the persons skeleton, capturing a frame roughly 30 times a second.</li>
+        <li>Currenty, the merging runs on a specifically named file when the start button is pressed in the UI, which merges the 2 text files
+        by interleaving the lines of the text file depending on the time stamp of the recorded frame.</li>
+        <li>The UI then allows playback of the merged skeleton text file. Currently the playback just displays the movement of the merged skeleton 
+        and allows zooming in, locking onto specific body parts and rotating around the model during playback. </li>
+        </ul>
+    </div>
+
+</body>
+
+</html>

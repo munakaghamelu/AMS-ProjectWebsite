@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Requirements</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="styleSheet.css">
+</head>
+
+<body>
+
+    <div class="sidenav">
+        <a href="http://students.cs.ucl.ac.uk/2019/group1/index.html">Index</a>
+        <a href="http://students.cs.ucl.ac.uk/2019/group1/requirements.html">Requirements</a>
+        <a href="http://students.cs.ucl.ac.uk/2019/group1/research.html">Research</a>
+        <a href="http://students.cs.ucl.ac.uk/2019/group1/evaluation.html">Evaluation</a>
+        <a href="http://students.cs.ucl.ac.uk/2019/group1/design.html">Design</a>
+        <a href="http://students.cs.ucl.ac.uk/2019/group1/testing.html">Testing</a>
+        <a href="http://students.cs.ucl.ac.uk/2019/group1/appendices.html">Appendices</a>
+        <a href="http://students.cs.ucl.ac.uk/2019/group1/algorithms.html">Algorithms</a>
+    </div>
+
+    <div class="content">
+        <h1>Requirements</h1>
+
+        <h2>Project Background</h2>
+        <p>
+            Phase 1: 
+            <b>Research</b>
+            <br><br> 
+            What are the hardware and spatial requirements and limitations of rigging a space with Kinects (or other sensors)
+            that can able a full 3D capture of multiple participants dancing at once? The system should ideally be able to support
+            partner-based dancing as well. The system should record data from all angles to produce a fully 3D rendering 
+            of participants that can be viewed and played back from any angle (within reason).
+            <br><br> 
+            Phase 2: 
+            <b>Algorithmic Comparison</b>
+            <br><br>Identify and separate a participant or couple from their competitors. Compare the isolated competitor(s) 
+            to the ideal model of their dance and produce a likeness score. Allow judges to actively flag points of interest 
+            during a dance.
+            <br><br>Phase 1 covered the core of the requirements of the client, with Phase 2 being the extension goals to 
+            attempt once the Phase 1 requirements were met.
+        </p>
+        <hr>
+
+        <h2>Requirement Gathering</h2>
+        <p>Initially, we gathered requirements by reading the the project sheet. We then went on to arrange
+        meetings with the client, and even speaking to our peers that do ballroom dancing to see what would 
+        useful features the prototype could have. We then created persona's as a result.
+        </p>
+
+        <p>The requirements of the project changed over the course of the term. 
+        At first, the brief was that the 3D model playback would be used in order to help the judges of dance competitons 
+        make fair and reliable decisions. Consequently, the model creation would need to be in real time as the dance 
+        was going on, as the judges are expected to make quick decisions after the conclusion of any dance. 
+        
+        Ultimately, the purpose of our prototype changed to be more educational. Rather than being for the judges of dance competitions, 
+        it would be a way of recording dancers from multiple angles so that their dance can be played back to them and 
+        analysed for errors/areas of improvement. This removes the complexity of real time application.
+        </p>
+        <hr>
+
+        <h2>Personas</h2>
+        <img src="persona_1.png" alt="Persona 1" height="450" width="580">
+        <img src="persona_2.png" alt="Persona 2" height="450" width="580">
+        <hr>
+
+        <h2>Project Goals</h2>
+        <ul>
+            <li></li>
+        </ul>
+        <hr>
+
+        <h2>MoSCoW requirement list</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Requirements</th>
+                <th>Priority</th>
+            </tr>
+
+            <tr>
+                <td>1</td>
+                <td>Ability to stitch together video feed of 4 kinect cameras</td>
+                <td>Must have</td>
+            </tr>
+
+            <tr>
+                <td>2</td>
+                <td>Accurate capture of audio synced with the dance</td>
+                <td>Must have</td>
+            </tr>
+
+            <tr>
+                <td>3</td>
+                <td>Create a 3D model of the dance from the combined video feed</td>
+                <td>Must have</td>
+            </tr>
+            
+            <tr>
+                <td>4</td>
+                <td>Functional UI to allow full playback of dance from 3D model from multiple angles</td>
+                <td>Must have</td>
+            </tr>
+                        
+            <tr>
+                <td>5</td>
+                <td>Floor plan design: Kinect placements, maximum room dimensions</td>
+                <td>Must have</td>
+            </tr>
+
+            <tr>
+                <td>6</td>
+                <td>Ability to manipulate playback of model by varying level of zoom</td>
+                <td>Should have</td>
+            </tr>
+            
+            <tr>
+                <td>7</td>
+                <td>Support for partner based dancing</td>
+                <td>Should have</td>
+            </tr>
+                        
+            <tr>
+                <td>8</td>
+                <td>Ability to track multiple dancers</td>
+                <td>Should have</td>
+            </tr>
+                        
+            <tr>
+                <td>9</td>
+                <td>Skeletal tracking to capture the technical aspects of the sance and musicality
+                (their time with the beat and how well they dance)</td>
+                <td>Should have</td>
+            </tr>
+                        
+            <tr>
+                <td>10</td>
+                <td>Identify and separate a participant from their competitors</td>
+                <td>Could have</td>
+            </tr>
+                        
+            <tr>
+                <td>11</td>
+                <td>Analyse dance model and generate a likeness score</td>
+                <td>Could have</td>
+            </tr>
+                        
+            <tr>
+                <td>12</td>
+                <td>Ability to track multiple pairs of dancers</td>
+                <td>Could have</td>
+            </tr>
+                        
+            <tr>
+                <td>13</td>
+                <td>Ability to use an alternate depth camera, most likely the Intel
+                Realsense d435</td>
+                <td>could have</td>
+            </tr>
+        </table>
+        <hr>
+
+        <h2>Use cases</h2>
+        <p>Use case Diagrams illustrating two users trying to access the app, it is assumed they are dance partners.</p>
+            <img src="useCase_1.png" width="500" height="500">
+
+        <p>Table showing individual use cases.</p>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Use Case For User</th>
+            </tr>
+
+            <tr>
+                <td>UCU1</td>
+                <td>Logging in to the Application</td>
+            </tr>
+
+            <tr>
+                <td>UCU2</td>
+                <td>Upload dance from local folder to application</td>
+            </tr>
+            
+            <tr>
+                <td>UCU3</td>
+                <td>Download dance from cloud to watch back</td>
+            </tr>
+                        
+            <tr>
+                <td>UCU4</td>
+                <td>Add notes about playback</td>
+            </tr>
+                        
+            <tr>
+                <td>UCU5</td>
+                <td>Watch dance from multiple angles</td>
+            </tr>
+        </table>
+        <hr>
+
+        <p>Specific use case for some use cases above.</p>
+
+        <table>
+            <tr>
+                <th colspan="2">Use Case</th>
+            </tr>
+
+            <tr>
+                <td>ID</td>
+                <td>UCU4</td>
+            </tr>
+
+            <tr>
+                <td>Actor</td>
+                <td>Dance partner 1</td>
+            </tr>
+            
+            <tr>
+                <td>Description</td>
+                <td>Dancer notices his hand is too high, so wants to add a note for
+                next time.</td>
+            </tr>
+
+            <tr>
+                <td>Main Flow</td>
+                <td>
+                    <ol>
+                        <li>Log in to application</li>
+                        <li>Download text file containing skeletal data of recording from cloud or local folder</li>
+                        <li>Navigate to note taking part of the application</li>
+                        <li>Type in comment</li>     
+                        <li>Save comment</li> 
+                    </ol>              
+                </td>
+            </tr>
+
+        </table>
+        <hr>
+
+    </div>
+
+</body>
+
+</html>
