@@ -31,6 +31,12 @@
 
         <h2>Data Storage</h2>
         <hr>
+        <p>
+            Currently, the dance text files are stored in the teams Azure storage account. This comes with Azures basic level of security and encryption at rest. A 30s dance will be stored as a text file ~150kB in size which means that even if we are storing the
+            dance from 4 perspectives you will be using less than a mB of server space on the cloud. Block blob storage in Azure at the basic level of speed of access and security (which in our view is sufficient for low risk data like skeletal data)
+            starts at £0.00061/GB per month, and so the cost of storage to the client will be minimal. One issue that would need to be fixed if the project repository was to be made public is that the authentication key for uploading and downloading to
+            the container is available unencrypted in one of the Unity scripts. This would need to be obfuscated or removed from the project hierarchy entirely in the case that the project files were made public.
+        </p>
 
         <h2>Implementation of Key functionalities</h2>
         <hr>
@@ -41,18 +47,21 @@
         <img src="Ideal.jpeg" alt="Best Case">
         <hr>
         <h2>System diagram for the project</h2>
-        <img src ="SystemDesign.png" alt="Systems Diagram">
+        <img src="SystemDesign.png" alt="Systems Diagram">
         <hr>
         <h2>Implementation of finished functionalities</h2>
-        <ul>
-        <li>The video capture is done with the Unity asset along with 2 Kinects (all that we have access to so far).
-         The Unity asset runs on each individual computer that is connected to a Kinect, creating a text file representation
-          of the persons skeleton, capturing a frame roughly 30 times a second.</li>
-        <li>Currenty, the merging runs on a specifically named file when the start button is pressed in the UI, which merges the 2 text files
-        by interleaving the lines of the text file depending on the time stamp of the recorded frame.</li>
-        <li>The UI then allows playback of the merged skeleton text file. Currently the playback just displays the movement of the merged skeleton 
-        and allows zooming in, locking onto specific body parts and rotating around the model during playback. </li>
-        </ul>
+        <p>
+            Our Unity application currently has the following features: <br>
+            <ul>
+                <li>Recording a dance with 1-4 Kinects, with each Kinect connected to it's own computer</li>
+                <li>Uploading the dance text file from each computer to a blob storage container in our teams Azure storage account</li>
+                <li>Viewing the list of available files in the cloud, and downloading a selection of them to be stored locally in the project hierarchy</li>
+                <li>Merging and interpolating selected dance files to create a master dance text file</li>
+                <li>Viewing any dance text file as a skeletal representation of a dance</li>
+                <li>Zooming, rotating, locking on certain body parts, leaving notes, navigating through the dance with the time bar, changing the speed of playback</li>
+                <li>Analysing two different version of the same dance, giving the user a score of how well they performed compared to the ideal version of their dance</li>
+            </ul>
+        </p>
     </div>
 
 </body>
