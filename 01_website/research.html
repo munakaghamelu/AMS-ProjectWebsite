@@ -48,53 +48,40 @@
 
         <h2><a id="Mixed Reality">Microsoft Mixed Reality Capture System</a></h2>
         <p>
-            We also sought advice from experts; Anthony Steed, who is a professor in virtual environments and augmented 
-            reality advised us to check out Microsoft Mixed Reality Capture system but the system relies on us physically 
-            going to a microsoft mixed reality capture studio and capturing the dancers to then produce holograms of them. 
-            Microsoft enables people to create augmented reality models of themselves that can then be viewed in VR sets. 
-            Using augmented reality could be a potential thing to use, and then for teaching purposes users can view the 
-            dancers in AR and follow along. However, this is not really inline with our original project requirements. 
-            It doesn’t seem like a feasible solution, so we had to discard this as a possible method.
+            We also sought advice from experts; Anthony Steed, who is a professor in virtual environments and augmented reality advised us to check out Microsoft Mixed Reality Capture system but the system relies on us physically going to a microsoft mixed reality
+            capture studio and capturing the dancers to then produce holograms of them. Microsoft enables people to create augmented reality models of themselves that can then be viewed in VR sets. Using augmented reality could be a potential thing to
+            use, and then for teaching purposes users can view the dancers in AR and follow along. However, this is not really inline with our original project requirements. It doesn’t seem like a feasible solution, so we had to discard this as a possible
+            method.
         </p>
 
         <h2><a id="Brekel3D">Brekel3D</a></h2>
-        <p>Brekel3D [13] is standalone software that provides additional functionality to kinect data processing, and has 
-        features such as detailed point cloud generation and skeletal mapping. The main feature that would have been 
-        useful for us, if we were to do point clouds, is the ability to use multiple kinects and merge the point clouds 
-        together. However, we discovered that there was no way to extract the raw data from the point clouds for us to 
-        manipulate. This was a major disadvantage because it would take away our ability to apply our own algorithms to 
-        the data later on in the project. Therefore, we scrapped this software and decided it was not suitable for us.
+        <p>Brekel3D [13] is standalone software that provides additional functionality to kinect data processing, and has features such as detailed point cloud generation and skeletal mapping. The main feature that would have been useful for us, if we were
+            to do point clouds, is the ability to use multiple kinects and merge the point clouds together. However, we discovered that there was no way to extract the raw data from the point clouds for us to manipulate. This was a major disadvantage
+            because it would take away our ability to apply our own algorithms to the data later on in the project. Therefore, we scrapped this software and decided it was not suitable for us.
         </p>
 
         <h2><a id="RoomAlive">RoomAlive</a></h2>
         <p>
-            We also researched a toolkit called RoomAlive [14]; we liaisoned with a member of another group who is also completing 
-            a project for Arthur Murray Studios to try and setup RoomAlive. It seemed quite promising because it had the ability 
-            to merge multiple kinects [1, 4] by using the depth data from data cameras. The depth and color camera parameters are 
-            calculated using the CoordinateMapper methods from the Kinect SDK. However a downfall is that it needed projectors, 
-            a detail we didn’t need as part of our project and we couldn’t find a way to merge kinects without using projectors. 
-            To summarise, the pros was that it made us realise it is definitely possible to merge data from multiple kinects 
-            however a con was that we had to figure out how to do it without the need of unnecessary entities (projectors).
+            We also researched a toolkit called RoomAlive [14]; we liaised with a member of another group who is also completing a project for Arthur Murray Studios to try and setup RoomAlive. It seemed quite promising because it had the ability to merge multiple
+            kinects [1, 4] by using the depth data from data cameras. The depth and color camera parameters are calculated using the CoordinateMapper methods from the Kinect SDK. However a downfall is that it needed projectors, a detail we didn’t need
+            as part of our project and we couldn’t find a way to merge kinects without using projectors. To summarise, the pros was that it made us realise it is definitely possible to merge data from multiple kinects however a con was that we had to
+            figure out how to do it without the need of unnecessary entities (projectors).
         </p>
 
         <h2><a id="Pose">Human Pose Estimation</a></h2>
         <p>
-            Microsoft has a toolkit that features a Human Estimation Demo, which does 2-D multiple-person human pose estimation. 
-            This software would work with any webcam so no motion sensor is required. The key advantage to using this software 
-            is the fact that there would be few complications in sensing multiple people in one scene, which would usually be
-             problematic when using sensors. But running this software does require an Intel Neural Compute Stick, which is quite expensive. 
-             Moreover, using the software does introduce deep-learning complexity to the project which can take a long time to 
-             go through to understand fully. These issues, along with the fact that the Kinect SDK [6, 7] has some built in human pose 
-             estimaton features, meant that we ultimately decided against using it.
+            Microsoft has a toolkit that features a Human Estimation Demo, which does 2-D multiple-person human pose estimation. This software would work with any webcam so no motion sensor is required. The key advantage to using this software is the fact that there
+            would be few complications in sensing multiple people in one scene, which would usually be problematic when using sensors. But running this software does require an Intel Neural Compute Stick, which is quite expensive. Moreover, using the
+            software does introduce deep-learning complexity to the project which can take a long time to go through to understand fully. These issues, along with the fact that the Kinect SDK [6, 7] has some built in human pose estimation features, meant
+            that we ultimately decided against using it.
         </p>
-            
+
         <div><a href="#Research"><button type='button'>Back to top</button></a></div>
 
         <h2><a id="Athlete">3D Athlete Tracking</a></h2>
         <p>
-            Another interesting technology that was recommended to us across was 3DAT or 3D Athletic Tracking which uses AI and
-             computer vision to record close to real time data on athletes. This is an emerging technology and looks promising 
-             but ultimately it is only due to be deployed at the upcoming Tokyo Olympics [15] and therefore didn't seem suitable for our project.
+            Another interesting technology that was recommended to us across was 3DAT or 3D Athletic Tracking which uses AI and computer vision to record close to real time data on athletes. This is an emerging technology and looks promising but ultimately it is
+            only due to be deployed at the upcoming Tokyo Olympics [15] and therefore didn't seem suitable for our project.
         </p>
 
         <hr>
@@ -102,12 +89,12 @@
         <h2> Researching related Technologies </h2>
 
         <h2><a id="Solutions">Comparison of alternative solutions</a></h2>
-        
+
         <h3>Skeletal Tracking vs Point Cloud Generation [2]</h3>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/1bodwMQ2zv8?start=50" frameborder="0" allow="accelerometer; autoplay; 
         encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/YTBvjLGDluY?start=2" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        
+
         <h3>Skeletal Tracking</h3>
         <h4>Pros</h4>
         <ul style="list-style-type:square;">
@@ -120,8 +107,7 @@
         <ul style="list-style-type:square;">
             <li>Does not create a sophisticated model [3], meaning that lots of additional work would need to be done if a lifelike model [3] was required</li>
             <li>Skeletal tracking sometimes struggles to track when limbs cross over one another which is obviously not ideal for recording dancers</li>
-            <li>Skeletal tracking is only accurate in a range of 1.5 to 4.5 metres from the kinect, further limiting the size of the dance floor 
-            that we would be able to capture</li>
+            <li>Skeletal tracking is only accurate in a range of 1.5 to 4.5 metres from the kinect, further limiting the size of the dance floor that we would be able to capture</li>
         </ul>
 
         <h3>Point Cloud</h3>
@@ -130,26 +116,22 @@
             <li>Accurately captures the scene being recorded, i.e faithful recreation of colour, shape etc</li>
             <li>Less likely to run into difficulties when recording multiple dancers compared to skeletal tracking</li>
             <li>Better range than skeletal tracking ( ~ double the range)</li>
-            <li>Due to the fact that it doesn’t rely on recognising a human shape, point cloud merging has applications beyond the recording of humans, 
-            making it interesting for future research</li>
+            <li>Due to the fact that it doesn’t rely on recognising a human shape, point cloud merging has applications beyond the recording of humans, making it interesting for future research</li>
         </ul>
 
         <h4>Cons</h4>
         <ul style="list-style-type:square;">
             <li>Processing power required and size of point cloud recordings. Kinect recordings of 15s can be up to 2Gb in size when uncompressed</li>
             <li>The algorithms for smoothing point cloud images are extremely complicated</li>
-            <li>The final quality of the merged pointcloud [4] would likely not be very high</li>
+            <li>The final quality of the merged point cloud [4] would likely not be very high</li>
         </ul>
 
         <h3>Working from .xef files</h3>
 
-        <p>We looked at an existing project that seemed to allow the conversion of .xef files (the format that kinect video is saved in)
-            into RGB images. The idea was then that it might be possible to convert the series of RGB images
-            into depth and colour data, which is essentially a representation of a pointcloud. The pointclouds generated from each Kinect could 
-            then feasinly be merged [4].
-            Unfortunately the project was very outdated and development had not continued on it. This meant that we ran into software incompatibility 
-            issues when trying to get the project to build. Due to the fact that the research phase of the project was already lengthy,
-            as well as us deciding to go with skeletal tracking instead of point cloud merging, we ultimately decided this repository wasn't suitable.
+        <p>We looked at an existing project that seemed to allow the conversion of .xef files (the format that kinect video is saved in) into RGB images. The idea was then that it might be possible to convert the series of RGB images into depth and colour
+            data, which is essentially a representation of a point cloud. The point clouds generated from each Kinect could then feasibly be merged [4]. Unfortunately the project was very outdated and development had not continued on it. This meant that
+            we ran into software incompatibility issues when trying to get the project to build. Due to the fact that the research phase of the project was already lengthy, as well as us deciding to go with skeletal tracking instead of point cloud merging,
+            we ultimately decided this repository wasn't suitable.
         </p>
 
         <hr>
@@ -158,25 +140,17 @@
 
         <h2>Intel Realsense</h2>
         <p>
-        This was an alternative motion capture device to the Kinect v2. The major benefits of using the Intel Realsense is that 
-        there is plenty of resources online for setting up multi-camera configuration.[16] Its depth cameras also record at a higher 
-        fps than the kinect which could help increase the accuracy. However, the depth camera footage quality is significantly 
-        worse than the kinect v2, which would lead to complications if we tried to merge point clouds from the cameras [4].
-        Additionally, the depth camera range is only 6m compared to kinect’s 8m.
-        The department also has several Kinect V2s available to be loaned out which made the Kinect more appealing
-        for getting a prototype up and running quickly.
+            This was an alternative motion capture device to the Kinect v2. The major benefits of using the Intel Realsense is that there is plenty of resources online for setting up multi-camera configuration.[16] Its depth cameras also record at a higher fps than
+            the kinect which could help increase the accuracy. However, the depth camera footage quality is significantly worse than the kinect v2, which would lead to complications if we tried to merge point clouds from the cameras [4]. Additionally,
+            the depth camera range is only 6m compared to kinect’s 8m. The department also has several Kinect V2s available to be loaned out which made the Kinect more appealing for getting a prototype up and running quickly.
         </p>
 
         <h2>Kinect v2 MS-SDK Unity Asset [18]</h2>
         <p>
-        The unity asset store features an asset to help integrate the kinect with unity.
-        The team from the project last year found it be very useful so we decided to try it out as well. The asset enabled us to 
-        process data that was directly streaming from the device, while inside unity. It also contained a large selection of demo 
-        scenes along with extensive documentation to demonstrate and explain the capabilities of the software. We found that 
-        reading the scripts it contained was a great way to gain an understanding of how the data from the kinect can be retrieved and processed.
-        One demo that was particularly useful showed us how to process skeletal joint data and save it to a text file, which 
-        could then be read back and visualised as a skeleton. This was a feature that was crucial for our dance playback system. 
-        Ultimately, since we chose to stick with unity, we decided this asset was an essential tool so we will be using it to help us.
+            The unity asset store features an asset to help integrate the kinect with unity. The team from the project last year found it be very useful so we decided to try it out as well. The asset enabled us to process data that was directly streaming from the
+            device, while inside unity. It also contained a large selection of demo scenes along with extensive documentation to demonstrate and explain the capabilities of the software. We found that reading the scripts it contained was a great way to
+            gain an understanding of how the data from the kinect can be retrieved and processed. One demo that was particularly useful showed us how to process skeletal joint data and save it to a text file, which could then be read back and visualised
+            as a skeleton. This was a feature that was crucial for our dance playback system. Ultimately, since we chose to stick with unity, we decided this asset was an essential tool so we will be using it to help us.
         </p>
 
         <hr>
@@ -185,40 +159,30 @@
 
         <h3>Processing Software vs Unity</h3>
         <p>
-        Processing is an open source programming language that contains a library called libfreenect for accessing and manipulating kinect data. 
-        The library allows you to create simple point clouds from the kinect camera data. The main advantage of using processing is that it was 
-        very easy to set up and see the results. However, the point clouds were not very detailed and therefore it was not going to meet the 
-        accuracy aspect of our project. Additionally, there were not many resources on it so we could not be sure if it was a safe path to take.
+            Processing is an open source programming language that contains a library called libfreenect for accessing and manipulating kinect data. The library allows you to create simple point clouds from the kinect camera data. The main advantage of using processing
+            is that it was very easy to set up and see the results. However, the point clouds were not very detailed and therefore it was not going to meet the accuracy aspect of our project. Additionally, there were not many resources on it so we could
+            not be sure if it was a safe path to take.
         </p>
 
         <h3>C++ or C#</h3>
-        <p>Initially when having a look at the Kinect SDK documentation, we discovered most of their tutorials were built using C++. So we looked
-        into how to integrate Unity with C++, we came across many tutorials [19]. Eventhough we have programmed in C before we decided C++ may be
-        a steeper learning curve than C#, due to C#'s likeness to Java. If we were to go down the route of using C++ we would have to create the program
-        from scratch, installing packages such as GLUT. We also had to consider which language to use with regard to whether we were going to go
-        down the generating point cloud data of software [8], because C++ would allow us to extract such data from the kinect. However, the guidance
-        we found for such a method was minimal.
-        
-        Thus, the pros of C# was that the asset we finally discovered, was coded purely with C# and integrated well with Unity. So C# seemed as the
-        most promising route.
+        <p>Initially when having a look at the Kinect SDK documentation, we discovered most of their tutorials were built using C++. So we looked into how to integrate Unity with C++, we came across many tutorials [19]. Even though we have programmed in
+            C before we decided C++ may be a steeper learning curve than C#, due to C#'s likeness to Java. If we were to go down the route of using C++ we would have to create the program from scratch, installing packages such as GLUT. We also had to
+            consider which language to use with regard to whether we were going to go down the generating point cloud data of software [8], because C++ would allow us to extract such data from the kinect. However, the guidance we found for such a method
+            was minimal. Thus, the pros of C# was that the asset we finally discovered, was coded purely with C# and integrated well with Unity. So C# seemed as the most promising route.
         </p>
 
         <h3>Previous Years Dance Project</h3>
         <p>
-        A group last year working with Arthur Murray did a project that had some overlaps with our project so we decided to have a look for 
-        assistance. We met up a member of their team to discuss the decisions they made and understand the code they implemented. Their team 
-        used unity and kinect to create models of dancers, which was a feature we needed as well. We discovered they utilised an asset for 
-        unity-kinect integration so we made sure to research into it. Seeing their project structure helped us understand how we could go 
-        about using unity ourselves. However, our project had a heavier emphasis on accuracy than theirs, so we knew we had to come up with 
-        a better approach to visualising the models. Despite that, analysing their project gave us more confidence in using unity and kinect 
-        because we knew it would at least be a viable safe option to choose. The source code for this project is available on request but is 
-        not publicly available to be referenced [18].
+            A group last year working with Arthur Murray did a project that had some overlaps with our project so we decided to have a look for assistance. We met up a member of their team to discuss the decisions they made and understand the code they implemented.
+            Their team used unity and kinect to create models of dancers, which was a feature we needed as well. We discovered they utilised an asset for unity-kinect integration so we made sure to research into it. Seeing their project structure helped
+            us understand how we could go about using unity ourselves. However, our project had a heavier emphasis on accuracy than theirs, so we knew we had to come up with a better approach to visualising the models. Despite that, analysing their project
+            gave us more confidence in using unity and kinect because we knew it would at least be a viable safe option to choose. The source code for this project is available on request but is not publicly available to be referenced [18].
         </p>
 
         <hr>
 
         <h2><a id="AddResearch">Additional Research and comments, main focus of Phase 2</a></h2>
-        <p>Phase 2 Description: 
+        <p>Phase 2 Description:
         </p>
 
         <hr>
@@ -230,7 +194,7 @@
 
         <p></p>
 
-        </div>
+    </div>
 
 </body>
 

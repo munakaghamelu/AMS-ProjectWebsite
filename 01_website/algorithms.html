@@ -32,15 +32,46 @@
         </iframe></p>
         <br>
         <p>The algorithm to transform the joint coordinates measured by each individual kinect is an important one when it comes to combining the results of each kinect. The joint coordinates from each kinect will be relative to the kinect that recorded
-            the data. This means in order to do any processing or combining of the data , a transformation must be applied to both the x and z coordinate readings of each client kinect. The transformation is detailed in the image above, note that x is
-            positive in the left direction of the server camera because that is the convention with the Kinect SDK. The transformation is dependant on where the client cameras are positioned relative to the server kinect, as well as the angle of rotation.
-            Currently we are hard coding those placements (angle, x_distance, y_distance).
+            the data. This means in order to do any processing or combining of the data, a transformation must be applied to both the x and z coordinate readings of each client kinect (we make the assumption that each kinect will be recording from the
+            same distance off of the ground). The transformation is detailed in the image above, note that x is positive in the left direction of the server camera because that is the convention with the Kinect SDK. The transformation is dependant on
+            where the client cameras are positioned relative to the server kinect, as well as the angle of rotation. Currently we are hard coding those placements (angle, x_distance, z_distance).
+        </p>
+
+        <p>
+            The second important algorithm came about because of discrepancies in the recording rate of the Kinects. We found that different Kinects were outputting frame data at different time stamps. This causes issues when trying to merge the skeletal data as
+            you won't be averaging skeletons taken at identical times. The solution to this problem was to interpolate the data files before merging them. By looking at joint positions in consecutive frames, we were able to interpolate the joint positions
+            and therefore standardise the timestamps to 0.01s intervals. This allows accurate merging of skeletons frame by frame. We used both linear interpolation and cubic spline interpolation as recommended to us by our TA, but noticed little difference
+            between the two interpolation methods.
         </p>
         <p>
-            Each kinect would start recoding simultaneously and start writing the skeletal data to their own csv text files. The recoding is then stopped at the same time and the files are stored in a folder locally. When the recording is played back,
-            the files are merged together using our code. First the appropriate transformations are performed on the files and then the data is combined and written to a new file based on their respective time stamps. If any of the data appears to be recorded at the 
-            same time, an average is taken instead. The distance is hard coded using the originial text files by seeing how far they were from the same joint. The merged csv is then be played back by the software and generated into a skeleton.
-            Interleaving the skeletal data this way helps increase the number of joints tracked per second and increase the accuracy.
+            Each kinect would start recording simultaneously and start writing the skeletal data to individual csv text files. The recording is then stopped at the same time and the files are stored in a folder locally. When the recording is played back, the files
+            are merged together using our code. First the appropriate transformations are performed on the files and then the data is combined and written to a new file based on their respective time stamps. If any of the data appears to be recorded at
+            the same time, an average is taken instead. The hard coded x and z distance values for the transformations are estimated by looking at the values of a specific joint from each kinect at the same time stamp. The merged csv is then played back
+            by the software and generated into a skeleton.
+        </p>
+
+        <p>
+            A key weakness of the Kinect V2 is that it has only been trained to recognise the human silhouette from front on. This is clearly a problem when dealing with dance; there will inevitably be periods of time where dancers will be side on to the Kinect,
+            leading to it struggling to correctly identify the joint of the human body for skeletal tracking. In theory, this should be an area where having multiple Kinects recording the subject dancer should improve the skeletal tracking of the dance.
+            We decided that by situating the Kinects at the 4 cardinal points around the dancer, that in theory you should always have at least 1 Kinect that is correctly tracking the dancer's skeleton. The problem then ultimately boiled down to how to
+            detect when a Kinect is recording the subject from side on, since in that case the joint data is most likely not very accurate and should be disregarded. We came up with two different methods to try and tackle this problem:
+        </p>
+
+        <p>
+            The first was to look at the distance between either the shoulder joints or the hip joints. The idea was that if this distance is too small, it is likely that the subject is not facing the Kinect. The appeal of this method was it's simplicity in implementation
+            and the low time complexity - A quick check can be done on the joint data frame by frame for each Kinect to calculate this distance, and then we can disregard the data if it is below a set threshold:<br><br> for(frame in frames):
+            <br> &ensp;&ensp;if(absolute(shoulderL - shoulderR)):<br> &ensp;&ensp;&ensp;&ensp;disregardFrame() &ensp;&ensp; <br>
+        </p>
+        <p>
+            The second was to look at the joint confidence value that is pre-pended to the three tuple of xyz positions for a given joint [25]. The research paper went quite in depth into improving the data from Kinect feeds, but given the time constraints, we decided
+            that simply looking at the joint confidence would be a good way of determining whether the Kinect was recording accurate joint data. A kinect tracks each joint as: 0 - Untracked, 1 - Inferred (from the position of the other joints), 2 - Tracked.
+            Given that we had multiple Kinects and therefore had several skeletons of data to work with, we chose to try disregarding any joint that is not fully tracked, and only averaging the transformed values of joints that had the joint confidence
+            of "2".
+        </p>
+
+        <p>
+            We then tried combining the two techniques for merging. We first pre-processed each frame from every Kinect, so that only frames that were deemed to be facing the given Kinect were considered. Then the joint confidence values are looked at so that only
+            joints that are fully tracked in acceptable frames contribute to the averaged skeleton position.
         </p>
 
         <hr>
@@ -50,7 +81,7 @@
         <hr>
 
         <h2> Experiment Results </h2>
-        <p>Investigatation of optional hyperarameters, experiment results presented by quantified values, plots/tables to show performance of comparison results</p>
+        <p>Investigation of optional hyper parameters, experiment results presented by quantified values, plots/tables to show performance of comparison results</p>
         <hr>
 
         <h2> Discussions </h2>
