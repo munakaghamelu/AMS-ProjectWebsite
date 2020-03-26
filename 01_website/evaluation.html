@@ -263,18 +263,71 @@
 
         <hr>
 
-        <h3>Critical evaluation of the project</h3>
+        <h2>Critical evaluation of the project</h2><br>
         <h4>UI/UX</h4>
         <h4>Functionality</h4>
+        <p>
+            We are fairly happy with the overall functionality of our project. We believe that given the limitations of the hardware that we are working with (the Kinect V2), we have achieved a good working project. The final flow of the Unity application is good,
+            with users being able to record from multiple perspectives, store and download the files on the cloud, interpolate and merge the files, view the playback of the dance and get an automatic analysis of their dance against the ideal version of
+            the dance.
+        </p>
+        <p>
+            The issues that we have with the functionality of the project come mainly from the Kinect. In particular, the Kinect struggling with recognising a side on dancer is something that we tried to overcome with several different merging techniques, but ultimately
+            the quality of the recording of a dance where the dancer does any sort of spinning motion will suffer. Moreover, the low range of the Kinect means that our prototype is not suitable for large dance halls, and instead lends itself better to
+            a carefully set up room with the Kinects situated at particular points in the room. In addition, the high data bandwidth usage of the Kinect V2 meant that we had to build the project with using multiple computers to record in mind. Ideally,
+            a more powerful single computer with several high bandwidth USB buses would be a more elegant solution. We also did not have the time to implement sound recording into the project, which is a shame for the obvious reason that music is a vital
+            component of dance. The Kinects built in Skeletal tracking does not have the capability of recognising dancers in-hold, which meant that we were unable to try and get recording working with two dancers holding in some way, which is clearly
+            detrimental when trying to record ballroom dancing.
+        </p>
+        <hr>
         <h4>Stability</h4>
         <h4>Efficiency</h4>
+        <p>
+            The scripts of our project are quite efficient both space and time wise. The text files are lightweight in size and each frame (0.01s) of a dance is represented as slightly over 100 comma separated values. This means the looping over the values required
+            during much of the post-processing of the dance data is fairly quick and should not grow in time complexity except as the duration of a dance increases. When we read in the text file values, we never store more than one of the text files in
+            memory at one time, so the space complexity of the algorithms is also kept to a minimum. One area where the efficiency of our project could be improved is that we do a lot of string -> float and then float -> string conversion. To improve
+            efficiency the code could be rewritten so that floating point representations of the data are stored in memory, and then only converted once back to strings to be written to the text file, rather than the current solution of mainly storing
+            string representations of the data in memory and doing type conversions when and if computation needs to be done with the data.
+        </p>
+        <hr>
         <h4>Compatibility</h4>
+        <p>
+            Our project relies heavily on Kinect V2s, which are unfortunately not compatible with Apple products due to issues with the Kinect SDK, and so anyone working on a non-dual booted Mac would be unable to use the project in it's current state. Otherwise,
+            Unity has a good track record with Compatibility; projects are usually backwards compatible with old versions of Unity as well as it frequently being possible to automatically update a Unity project to the latest version. Lastly, sources seem
+            to suggest that code written for the Kinect SDK will be compatible with the new Azure Kinects, so in theory upgrading the project to be compatible with the much superior Azure Kinect should be relatively painless.
+        </p>
+        <hr>
         <h4>Maintainability</h4>
+        <p>
+            Maintainability should not be an issue for our project. The structure of the codebase is quite modular, and so extending functionality or making changes should be reasonably easy. Key functions and classes have been commented so whomever inherits the
+            project should not have too many issues understanding the complexities of the project. Moreover, Unity is very good at being able to automatically update projects to be compatible with their new releases, so in theory there should not be too
+            many issues on that front. The only issue that we can predict is that the Microsoft Azure Unity package that we are using for the uploading and downloading of files is an experimental branch, so it's functionality is possibly subject to frequent
+            change.
+        </p>
+        <hr>
         <h4>Project Manager</h4>
+        <p>Muna was our Project Manager for this project. She performed her duties as project manager and team leader extremely well. She was quick to establish communication and collaboration methods with a WhatsApp group and several GitHub repositories
+            for the project. She handled communication with the client and organised lots of the team meetings. She also tracked the deliverable deadlines, ensuring that we stayed on top of the work. All of this ensured that James and myself were able
+            to focus on implementing the requirements of the project. She made particular efforts to ensure that we were working collaboratively, since working as a team on a project of this magnitude was not something that we had much experience with.
+            As a team we were very well organised and committed to the project - We met twice a week at least for >6 hours a day as well as working on our individual components in our own time. This was crucial because of the hardware aspect of our project,
+            since we needed a computer for every Kinect that was recording. Overall the Project Management aspect of the project was a success.
+        </p>
         <hr>
 
         <h3>Future work</h3>
-        <h4>How could the project be extended if you have another 6 months.</h4>
+        <p>
+            The single largest improvement to the project would come from the release of the Microsoft Azure Kinect in the UK. The Azure Kinect should become available soon, and allows the automatic merging of multiple Kinect feeds, as well as a huge increase in
+            performance. Amongst other new features, it can track more people with much higher accuracy as well as store footage directly to the cloud. Ideally the project would be upgraded to work with the Azure Kinect as there would likely be a large
+            jump in overall performance. The client is based in America, and therefore if they decide to proceed with their plans we would strongly recommend they use the Azure Kinect over the Kinect V2.<br> <br> Other possible improvements
+            to the project: <br>
+            <ul>
+                <li>Recording sound so that the dance playback has the music accompanying it</li>
+                <li>Amending the interpolation and transformation scripts so that they can handle situations where multiple dancers are being tracked at the same time</li>
+                <li>Experiment with other merging techniques to see if a result can be obtained where a spinning dancer can be smoothly tracked</li>
+                <li>Improve the sophistication of the phase 2 algorithms, allowing for more accurate comparisons of one dance to the ideal version of the same dance</li>
+                <li>Implement a log-in system that gives the user access to only certain data containers that pertain to their own dances and instructional/ideal dances, rather than the current structure where everything is stored in the same container in
+                    the cloud</li>
+            </ul>
     </div>
 
 </body>
