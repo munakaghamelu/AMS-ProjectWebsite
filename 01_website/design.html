@@ -22,15 +22,23 @@
 
     <div class="content">
         <h1>Design</h1>
-
+        <hr>
         <h2>System Architecture Diagram</h2>
+        <img src="SystemDesign.png" alt="Systems Diagram" width="800" height="500">
         <hr>
 
         <h2>Class Diagram</h2>
+        <img src="img/class-diagram.png" alt="class diagram" width="1200" height="920">
+        <p> Key:
+            <ul>
+            <li>Line symbolise dependency relationships                        ⇢ </li>
+            <li>Diamond Line symbolise aggreagation relationships              ┅◇ </li>
+            <li>Black line illustrated similar classes                         ┅</li>
+            </ul>
+        </p>
         <hr>
 
         <h2>Data Storage</h2>
-        <hr>
         <p>
             Currently, the dance text files are stored in the teams Azure storage account. This comes with Azures basic level of security and encryption at rest. A 30s dance will be stored as a text file ~150kB in size which means that even if we are storing the
             dance from 4 perspectives you will be using less than a mB of server space on the cloud. Block blob storage in Azure at the basic level of speed of access and security (which in our view is sufficient for low risk data like skeletal data)
@@ -38,7 +46,6 @@
             the container is available unencrypted in one of the Unity scripts. This would need to be obfuscated or removed from the project hierarchy entirely in the case that the project files were made public.
         </p>
 
-        <h2>Implementation of Key functionalities</h2>
         <hr>
 
         <h2>Potential Floor Plans for using the prototype</h2>
@@ -46,9 +53,7 @@
         <img src="Feasible.jpeg" alt="Better Case">
         <img src="Ideal.jpeg" alt="Best Case">
         <hr>
-        <h2>System diagram for the project</h2>
-        <img src="SystemDesign.png" alt="Systems Diagram">
-        <hr>
+
         <h2>Implementation of finished functionalities</h2>
         <p>
             Our Unity application currently has the following features: <br>
