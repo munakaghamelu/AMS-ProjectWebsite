@@ -181,8 +181,28 @@
 
         <hr>
 
-        <h2><a id="AddResearch">Additional Research and comments, main focus of Phase 2</a></h2>
-        <p>Phase 2 Description:
+        <h2><a id="AddResearch">Additional Research, Phase 2</a></h2>
+        <p> Phase two is about producing a likeness score between an 'ideal' and 'amatuer' model. We did some research to look at alternatives methods to producing a likeness score. One research paper takes a quantitive approach [22], they developed a "C++ OpenNI-based
+        skeleton tracking software and a MATLAB wrapper to acquire the skeleton tracking output from the ONI recordings". To produce a score for each choreography they proposed to compare the aligned position and velocity vector signals of an amateur dancer with
+        corresponding signals of a professional one. The handle the coordinate variables x, y and z in a "holistic manner", they then have a scoring system. The first score being the joint positions, a score for each joint is calculated [22] by considering the modulus
+        of the quaternionic Correlation Coefficient for each pair of joint position signals. Then second score system is the "Joint Velocities", an overall score is extracted based on the velocities of the joints rather than their positions. Thirdly, a "3D Flow Error"
+        for a given frame, the velocities of the joints are considered as 3D motion (flow) vectors. A total third scor for the whol choerography is calculated from the median across time. This is quite interesting because we focused on making sure the kinect data
+        between an amateur and an ideal model is accurate frame by frame, by carrying out interpolation. Finally, using these 3 scoring systems they produce a combined score, calculated as the weighted mean of the three.
+        </p>
+
+        <p>
+        An alternative scoring system we came across via research was having a fixed set of "ball room dancing positions" and then working out the deviations between these positions with each frame by frame recording. However, the flaw of this solution is that it
+        focuses on still images rather than a full recording, with multiple frames. It assumes the user is simply trying to strike a specific pose, and then gives feedback on what angle the user should alter. [26]
+        </p>
+
+        <p>
+        We also discussed with our TA a way to work out the scoring system and he described a system where we have at least three ‘Good’ recordings , and then we should extract a mean and a standard deviation for each one of the normalized vectors. 
+        Then, if we have a bad recording, we then can compare the normalized vectors of this recording to the mean and the standard deviation of each location, and that should give you an indicator of whether this recording fall within the normal range or not. 
+        If it’s higher or lower than 3*std then it should definitely be a bad recording.
+        </p>
+        
+        <p>
+        Concluding, the approach we decided on was working out the percentage error between an 'ideal' model and 'perfect' model - please see our Algorithm section for more on this.
         </p>
 
         <hr>
@@ -192,7 +212,12 @@
 
         <h2><a id="Summary">Summary of final decision</a></h2>
 
-        <p></p>
+        <p>
+        Our final decision was to use the Unity Asset as our starting point for our project; thus following the skeletal tracking of dancers route. We will then capture the skeletal data
+        and work out an effective way to merge the data from the different kinects together (Interpolating and Transforming). Then producing an asthetically pleasing GUI that can has a
+        rendering of a 3D model that can be manipulated by the user. The User should also be able to analysis specific dances, and produce a likeness score to see how well an 'ideal' dance
+        compares with an 'amatuer' dance.
+        </p>
 
     </div>
 
