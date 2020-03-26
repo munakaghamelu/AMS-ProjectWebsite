@@ -257,6 +257,13 @@
 
         <h2>Critical evaluation of the project</h2><br>
         <h4>UI/UX</h4>
+        <p>
+            We went for a simple and intuitive user interface that would be easy to follow. We found that going for a minimal look was suitable because we wanted it to be functional yet professional looking since its mostly aimed for experienced dancers and judges. 
+            We made the UI for the playback scene in a way that would allow the user to mostly focus on watching the dance and not how to use the tools.  The features of being able to control the time and focus on certain joints were great additions because they enable 
+            the user to take full control and properly analyse the dance.We also decided that for phase 2, the similarities would be visualised with bars instead of just numbers to give the judges a better indication of the scale of the scores. We tried our best to 
+            clarify any complex areas such as the recording scene by adding instructions, but the one area that still may confuse people is the uploading and merging of files since it is quite technical. In the future we could perhaps have a dynamic tool that tells you 
+            what to do step by step.
+        </p>
         <h4>Functionality</h4>
         <p>
             We are fairly happy with the overall functionality of our project. We believe that given the limitations of the hardware that we are working with (the Kinect V2), we have achieved a good working project. The final flow of the Unity application is good,
@@ -273,6 +280,12 @@
         </p>
         <hr>
         <h4>Stability</h4>
+        <p>
+            We found that our core scripts are reasonably stable because they will always behave correctly when the application is used in the right process. The unit tests we have also show that the most important functionalities work well. However, we did not have enough 
+            time to write error checking for all our programs so it is likely that there are edge cases that could break the code if the user were to use the application in an unintended way. Our cloud systems needs improvement in stability because currently the user can 
+            send any file into the cloud without much checking or replace any file that has the same name. Additionally, there is a higher chance of error in the recording scene, which seems to be the most vulnerable since it requires you to connect the Kinect, which adds 
+            more complexity to the code. Thus, even though the main functionalities perform well and are reliable, given more time there needs to be more error checking to improve the stability and reliability of the code.
+        </p>
         <h4>Efficiency</h4>
         <p>
             The scripts of our project are quite efficient both space and time wise. The text files are lightweight in size and each frame (0.01s) of a dance is represented as slightly over 100 comma separated values. This means the looping over the values required

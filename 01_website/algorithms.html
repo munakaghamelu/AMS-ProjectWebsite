@@ -25,12 +25,11 @@
         <hr>
 
         <h2> Models </h2>
-        <p>What is the key idea of your chosen algorithm?</p>
 
         <h3>Transformation algorithm between camera coordinates</h3>
         <p class="aligncenter"><iframe src="transformationAlgo.png" class="center" width="70%" height="1000px">
         </iframe></p>
-        <br>
+        <h3>What is the key idea of this algorithm?</h3>
         <p>The algorithm to transform the joint coordinates measured by each individual kinect is an important one when it comes to combining the results of each kinect. The joint coordinates from each kinect will be relative to the kinect that recorded
             the data. This means in order to do any processing or combining of the data, a transformation must be applied to both the x and z coordinate readings of each client kinect (we make the assumption that each kinect will be recording from the
             same distance off of the ground). The transformation is detailed in the image above, note that x is positive in the left direction of the server camera because that is the convention with the Kinect SDK. The transformation is dependant on
@@ -76,16 +75,162 @@
 
         <hr>
 
-        <h2> Experiment Setup </h2>
-        <p>Dataset, Training and testing scheme</p>
+        <h3>Percentage Error of 'Ideal' and 'Model' Dance</h3>
+        <h3>What is the key idea of this algorithm?</h3>
+        <p>This algorithm involves two classes, the 'PositionVectors' class and 'MarginOfError' class. Its aim is to firstly, get the x,y and z coordinates of the 'amateur' and 'model' dance
+        recordings and then generate the relative position vectors of each. For example the relative position vector between the head and neck joint of the 'amatuer' dance file. It then will
+        normalise these position vectors, so they can later be used for comparison. The vectors need to be normalised so there aren't any problems with scaling. The second half of the algorithm
+        then workings out the 'margin of error' or percentage error between the relative position vectors of joints, of the 'ideal' and 'amateur' dance models. It then produces a average
+        percentage area of 6 key areas: Head, Shoulder, Arms, Torso, Hips and Legs. We then also have an overall likeness score, the higher the likeness score the closer to the ideal model the
+        amateur dance was.
+        </p>
+
+        <p> To further explain the algorithm, we will take snippets of code from the main project and explain them.</p>
+
+        <pre>
+            private void createPositionVectorList(string newPath)
+            {
+                //0-17 index shows the pairs of points
+                positionVectorList.Add(getPositionVector(jointsAndCoordinates["Head"], jointsAndCoordinates["Neck"]));
+                positionVectorList.Add(getPositionVector(jointsAndCoordinates["Neck"], jointsAndCoordinates["SpineShoulder"]));
+                positionVectorList.Add(getPositionVector(jointsAndCoordinates["SpineShoulder"], jointsAndCoordinates["ShoulderLeft"]));
+                positionVectorList.Add(getPositionVector(jointsAndCoordinates["SpineShoulder"], jointsAndCoordinates["ShoulderRight"]));
+                positionVectorList.Add(getPositionVector(jointsAndCoordinates["ShoulderLeft"], jointsAndCoordinates["ElbowLeft"]));
+                positionVectorList.Add(getPositionVector(jointsAndCoordinates["ShoulderRight"], jointsAndCoordinates["ElbowRight"]));
+                positionVectorList.Add(getPositionVector(jointsAndCoordinates["SpineMid"], jointsAndCoordinates["SpineBase"]));
+                positionVectorList.Add(getPositionVector(jointsAndCoordinates["SpineBase"], jointsAndCoordinates["HipLeft"]));
+                positionVectorList.Add(getPositionVector(jointsAndCoordinates["SpineBase"], jointsAndCoordinates["HipRight"]));
+                positionVectorList.Add(getPositionVector(jointsAndCoordinates["HipLeft"], jointsAndCoordinates["KneeLeft"]));
+                positionVectorList.Add(getPositionVector(jointsAndCoordinates["HipRight"], jointsAndCoordinates["KneeRight"]));
+                positionVectorList.Add(getPositionVector(jointsAndCoordinates["KneeLeft"], jointsAndCoordinates["AnkleLeft"]));
+                positionVectorList.Add(getPositionVector(jointsAndCoordinates["KneeRight"], jointsAndCoordinates["AnkleRight"]));
+                positionVectorList.Add(getPositionVector(jointsAndCoordinates["AnkleLeft"], jointsAndCoordinates["FootLeft"]));
+                positionVectorList.Add(getPositionVector(jointsAndCoordinates["AnkleRight"], jointsAndCoordinates["FootRight"]));
+                positionVectorList.Add(getPositionVector(jointsAndCoordinates["ElbowLeft"], jointsAndCoordinates["WristLeft"]));
+                positionVectorList.Add(getPositionVector(jointsAndCoordinates["ElbowRight"], jointsAndCoordinates["WristRight"]));
+
+                normalisePositionVectors(newPath);
+            }
+        </pre>
+        <p> This class visualises the data being manipulated by using a dictionary data type. For example. the first 'positionVectorList.Add' function
+        gets the x, y and z coordinates of the 'Head' and 'Neck' joint, this forms one position vector (by respectively calling the getPositionVector
+        function shown below). The function 'normalisePositionVectors' then goes through the created dictionary and normalises all the position vectos.
+        </p>
+
+        <pre>
+            private List<'float'> getPositionVector(string firstJoint, string secondJoint)
+            {
+                char[] delimeters = { ',' };
+                float coordOne, coordTwo, difference;
+                List<.float> positionVectors = new List<.float>();
+
+                string[] coOrdsOfFirstJoint = firstJoint.Split(delimeters);
+                string[] coordsOfSecondJoint = secondJoint.Split(delimeters);
+
+                for (int j = 1; j < coOrdsOfFirstJoint.Length; j++)
+                {
+                    float.TryParse(coOrdsOfFirstJoint[j], NumberStyles.Float, CultureInfo.InvariantCulture, out coordOne);
+                    float.TryParse(coordsOfSecondJoint[j], NumberStyles.Float, CultureInfo.InvariantCulture, out coordTwo);
+                    difference = Math.Abs(coordTwo - coordOne);
+                    positionVectors.Add(difference);
+                }
+
+                return positionVectors;
+            }
+        </pre>
+        <p> Class iterates through the array of joint containing is coordinates, in the pattern x,y,z,x,y,z (iterated based on time frame) etc. and then works out the
+        absolute difference between the ideal's first head, x-coordinate and the amateur's first head, x-coordinate.
+        </p>
+
+        <pre>
+            private void normalisePositionVectors(string filePathNormalisedVectors)
+            {
+                List<.float> tempNormalisedCoord = new List<.float>();
+                float length = 0.0000f;
+                foreach (List<.float> coordinateXYZ in positionVectorList)
+                {
+                    for (int i = 0; i < coordinateXYZ.Count(); i += 3)
+                    {
+                        length += (float) Math.Sqrt(Math.Pow(Abs(coordinateXYZ[i]),2) + Math.Pow(Abs(coordinateXYZ[i + 1]),2) + Math.Pow(Abs(coordinateXYZ[i + 2]),2));
+                        tempNormalisedCoord.Add((float)Math.Round(((float)coordinateXYZ[i] / length), 4, MidpointRounding.ToEven));
+                        tempNormalisedCoord.Add((float)Math.Round(((float)coordinateXYZ[i + 1] / length), 4, MidpointRounding.ToEven));
+                        tempNormalisedCoord.Add((float)Math.Round(((float)coordinateXYZ[i + 2] / length), 4, MidpointRounding.ToEven));
+                    }
+                    normalisedPositionVectors.Add(tempNormalisedCoord);
+                    length = 0.0000f;
+                    tempNormalisedCoord = new List<.float>();
+                }
+                writeToFile(filePathNormalisedVectors, normalisedPositionVectors);
+            }
+        </pre>
+        <p> 'length' gives the normalised value of the relative x,y and z coordinates, it then divides it by each single coordinate to get the normalised value.
+        We then write the normalised vector to a file so our 'MarginOfError' class can make use of the data to then work out the percentage errors.
+        </p>
+
+        <pre>
+            private float getPercentageError(List<.string> idealValue, List<.string> modelValue)
+            {
+
+                float totalPercentages = 0.0f;
+                float idealValueFloat = 0.0f;
+                float modelValueFloat = 0.0f;
+                float error = 0.0f;
+                float denominator = 0.0f;
+                float averagePercentageError = 0.0f;
+                float numerator = 0.0f;
+
+                for (int i = 0; i < idealValue.Count(); i++)
+                {
+                    float.TryParse(idealValue[i], NumberStyles.Float, CultureInfo.InvariantCulture, out idealValueFloat);
+                    float.TryParse(modelValue[i], NumberStyles.Float, CultureInfo.InvariantCulture, out modelValueFloat);
+
+                    numerator = idealValueFloat - modelValueFloat;
+                    denominator = (Abs(idealValueFloat) + Abs(modelValueFloat)) / 2;
+                    error = Abs(numerator / denominator) * 100;
+                    if (Double.IsNaN(error))
+                    {
+                        error = Abs(modelValueFloat) * 100;
+                    }
+                    totalPercentages += error;
+                }
+
+                averagePercentageError = (float)totalPercentages / idealValue.Count();
+                return averagePercentageError;
+            }
+        </pre>
+        <p> This function within the MarginOfError class produces the percentage error of two string values after they've been read from our normalised vector
+        textfile.
+        </p>
+
         <hr>
 
         <h2> Experiment Results </h2>
         <p>Investigation of optional hyper parameters, experiment results presented by quantified values, plots/tables to show performance of comparison results</p>
+        <img src="img/transformation_analysis.png" width="700">
+        <p><b><font size="2">Figure 2. Depicts the percentage error from a recording between two kinects when one has been transformed.</font></b><p></p>
+        <img src="img/interpolation_analysis.png" width="700">
+        <p><b><font size="2">Figure 3. Comparing the difference in the movement of a specific joint between a recording with raw data and one that has been interpolated using a smooth step function.</font></b><p></p>
+        <img src="img/good_bad.png" width="700">
+        <p><b><font size="2">Figure 4. The results of using the comparison algorithm on an ideal and amateur recording for a certain movement</font></b><p></p>
         <hr>
 
         <h2> Discussions </h2>
         <p> Why algorithm fails for some test examples? Suggestions to improve the performance?</p>
+        <p>
+            Accurate merging proved to be quite difficult to achieve with the Kinect v2. Firstly we had to ensure that the measurements of all the distances during a recording was as accurate as possible, which was quite hard because we were not able to get stands for the Kinect. 
+            In addition,  a lot of issues arose from the inaccuracies of the Kinect hardware themselves. Even though our math for merging was correct, each Kinect could not track the coordinates entirely accurately and merging two or more Kinects would often add in more error. 
+            Therefore we can see from figure 2 that there appears to be a substantial amount of percentage error when comparing a Kinect with another transformed one. On the other hand, from a visual perspective the original skeleton and transformed one look reasonably similar so even 
+            though this percentage error seems high, the movements may not be exact but they are in fact not far off at all. Thid difference should be negligible in cases where pin-point accuracy is not necessary. In the future, we would probably look to program a way to calculate 
+            the distances between the Kinect’s while recording so that it does not have to be manually done and hardcoded. We would also look for newer alternative hardware to seek improvement in the precision.
+
+        </p>
+        <p>
+            Interpolation seemed to work well - the majority of the merged recordings looked significantly smoother than before. Figure 3 shows that by using a smooth step interpolation, the movement followed a much softer trajectory between each frame. 
+            Since raw recordings pick up the coordinates at random intervals, this can lead to sharp changes in direction, which is demonstrated on the graph. This could often be seen when played back where some movements appeared to be too rigid. Using 
+            interpolation allows for a more gradual change in the movement, resulting in a model that is more human-like and natural. However, there does seem to be issues when a person performs any extremely rapid motions because the pattern becomes too 
+            hard to follow and our program could end up interpolating unrealistic values. To improve this, we could consider increasing the interval time between each interpolation so that there is a better balance between raw and interpolated data; overusing 
+            estimation can easily lead to higher inaccuracy.  
+        </p>
         <hr>
 
         <h2> Conclusion </h2>
