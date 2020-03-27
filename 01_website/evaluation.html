@@ -251,11 +251,32 @@
                 <td>High</td>
             </tr>
 
+            <tr>
+                <td>3</td>
+                <td>Loading the wrong file when playing from a selected file. Turns out the filename variable needed to be static, otherwise it would be overwritten after the scene changes.</td>
+                <td>High</td>
+            </tr>
+
+            <tr>
+                <td>4</td>
+                <td>Originally the slider did not work with changing the time in the playback scene. It was discovered that the kinect text file was read and processed line by line so there was no way to go back. 
+                    The solution to this was to read and save the entire file into a dictionary with its time stamps so that it could be accessed on demand.
+                </td>
+                <td>High</td>
+            </tr>
+
+            <tr>
+                <td>5</td>
+                <td>The speed of the playback does not match the actual speed correctly. This was because Update() function in unity varied in its rate so we needed to use the FixedUpdate() function
+                    and scale the speed to match with Unity's speed at 50fps.
+                </td>
+                <td>High</td>
+            </tr>
+
         </table>
 
         <hr>
-
-        <h2>Critical evaluation of the project</h2><br>
+        <h2>Critical evaluation of the project</h2>
         <h4>UI/UX</h4>
         <p>
             We went for a simple and intuitive user interface that would be easy to follow. We found that going for a minimal look was suitable because we wanted it to be functional yet professional looking since its mostly aimed for experienced dancers and judges. 
