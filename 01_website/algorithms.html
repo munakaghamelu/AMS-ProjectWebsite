@@ -38,7 +38,14 @@
 
         <p>
             The second important algorithm came about because of discrepancies in the recording rate of the Kinects. We found that different Kinects were outputting frame data at different time stamps. This causes issues when trying to merge the skeletal data as
-            you won't be averaging skeletons taken at identical times. The solution to this problem was to interpolate the data files before merging them. By looking at joint positions in consecutive frames, we were able to interpolate the joint positions
+            you won't be averaging skeletons taken at identical times. See figure 1.
+        </p>
+
+        <img src="img/kinect_intervals.png" width="700">
+        <p><b><font size="2">Figure 1. Illustrates an example of the variation in frame data recording rate between 2 opposite kinects, taken from one of our recordings.</font></b><p> 
+        
+        <p>
+            The solution to this problem was to interpolate the data files before merging them. By looking at joint positions in consecutive frames, we were able to interpolate the joint positions
             and therefore standardise the timestamps to 0.01s intervals. This allows accurate merging of skeletons frame by frame. We used both linear interpolation and cubic spline interpolation as recommended to us by our TA, but noticed little difference
             between the two interpolation methods.
         </p>
@@ -202,6 +209,10 @@
         textfile.
         </p>
 
+        <p> Figure 4 shows the percentage error algorithm at work, it shows the comparison between a dance where the user is relatively in the same position but in the 'ideal' dance is moving only their left hand, and in the 'model' dance is moving both ther left
+        and right hands. Hence the greatest variation seen is in the section elbow-wrist and shoulder right.
+        </p>
+
         <hr>
 
         <h2> Experiment Results </h2>
@@ -231,6 +242,7 @@
             hard to follow and our program could end up interpolating unrealistic values. To improve this, we could consider increasing the interval time between each interpolation so that there is a better balance between raw and interpolated data; overusing 
             estimation can easily lead to higher inaccuracy.  
         </p>
+
         <hr>
 
         <h2> Conclusion </h2>
