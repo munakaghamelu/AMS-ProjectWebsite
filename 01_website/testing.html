@@ -25,9 +25,40 @@
 
         <h2>Testing Strategy</h2>
         <hr>
+        <p>
+            The testing strategy for this project was quite complicated for a few reasons. Firstly, there was the hardware component (the Kinects), which meant that lots of the testing we did was manual in nature, as well as visual. We made sure that when testing
+            our project that the recorded dances were of specific sets of movements, and then made sure that when playing back the dances both from single Kinect perspectives as well as merged Kinect perspectives that the dance appeared as expected.It
+            is hard to think of a more automated way of ensuring that the skeletal recordings actually matched the movements that were being performed.<br><br> Secondly, we found that Unity itself has lots of components that are difficult
+            to test in conjunction with one another, except by frequent run-throughs of the entire project. The integration of scripts, scenes, prefabs, the Kinects themselves and more is something that is extremely complicated to test with Unit and Integration
+            testing. Given that we were working with quite tight time constraints on the project, as well as the fact that we were worried writing some tests would take longer than the functional code itself, we decided to keep the automatic testing to
+            key functions in some of the scripts, and tested the rest of the functionality of the Unity app by consistently testing the flow of the app itself.
+        </p>
+        <br>
 
         <h2>Unit and integration testing</h2>
         <hr>
+        <p>
+            We decided to write unit tests some of our key functions and algorithms. The unit and integration testing is done with the built in NUnit testing framework in Unity. One thing to note for future projects in Unity is the interaction between MonoBehaviour
+            Unity classes and the Unity testing framework. MonoBehaviour classes cannot be instantiated in the usual way:<br> class classInstance = new class();<br> Instead they must be added to a temporary GameObject, despite the fact that
+            your tests are running before the runtime of the actual app. This initially felt a bit hacky and improvised but upon further research seems to be one of the main methods people have for testing their MonoBehaviour scripts with the in-built
+            Unity unit testing framework. The tests can be run in the Unity editor before running the app itself, by navigating to Window -> General -> Test Runner and then Run All. The code for the unit tests is found in the project Hierarchy, under
+            Assets -> Tests -> TestSuite.cs. We chose the functions that we unit tested because they were both integral to the function of the app and simple to test because they returned calculable numerical values. They also underwent several rewrites
+            as we changed how the calculations were run and as we rewrote the merging algorithm for combining the feeds of the Kinects. The data is represented as large text files of comma separated values, so the automated testing on these key functions
+            meant that we didn't have to look through difficult-to-read text files every time we changed the code.
+        </p>
+        <figure><img src="testPercentageError.PNG" alt="%error">
+            <figcaption>An example of one of our unit tests, testing the function for calculating percentage error in joint vectors</figcaption>
+        </figure>
+
+
+        <p>
+            The one integration test that we wrote was to test the UploadDownload script that handled uploading, downloading and storing data in the cloud. This was done by ensuring that a text file uploaded to the cloud was downloadable, and contained the same contents
+            as it did before being uploaded to the cloud. This was helpful because as we changed how the Unity app used the UploadDownload script, the code of its methods themselves had to change. It contains a Task.delay in the test because we found
+            that the download function was causing a shared path error with attempting to read the contents of the downloaded file otherwise.
+        </p>
+        <figure><img src="testUploadDownload.PNG" alt="UploadDownload">
+            <figcaption>Our integration test that ensured our cloud related functions were functioning correctly</figcaption>
+        </figure>
 
         <h2>User acceptance testing</h2>
         <hr>
